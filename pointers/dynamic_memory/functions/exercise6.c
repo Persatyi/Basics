@@ -36,17 +36,19 @@ int main() {
         int *even_arr = (int *)malloc(even_count * sizeof *even_arr);
         int *even_p = even_arr;
 
-        for (i = 0; i < n; i++, arr_p++) {
-            if(*(arr_p) % 2 == 0) {
+        while(arr_p < arr + n) {
+             if(*(arr_p) % 2 == 0) {
                 *(even_p) = *(arr_p);
                 even_p++;
             }
+            arr_p++;
         }
 
         even_p = even_arr;
 
-        for (i = 0; i < even_count; i++, even_p++) {
-            printf("%d ", *even_p);
+        while(even_p < even_arr + even_count) {
+             printf("%d ", *even_p);
+             even_p++;
         }
 
         free(even_arr);
