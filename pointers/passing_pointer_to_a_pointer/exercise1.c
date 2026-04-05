@@ -8,14 +8,33 @@ int cols і виділяє пам'ять для одновимірного ма�
 
 void createMatrix(int **matrix, int rows, int cols) {
     int size = (rows * cols);
-    int *arr = (int *)malloc(size * sizeof *arr);
-    if(*arr != NULL) {
-        for (i = 0; i < size; i++) {
-            *(*arr + i) = i + 1;
+    *matrix = (int *)malloc(size * sizeof **matrix);
+    if(*matrix != NULL) {
+        for (int i = 0; i < size; i++) {
+            *(*matrix + i) = i + 1;
+        }
+    }
+}
+
+void printMatrix(int *matrix, int rows, int cols) {
+    int size = (rows * cols);
+    if(matrix != NULL) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                 printf("%4d", *(matrix + i * cols + j));
+            }
+            printf("\n");
         }
     }
 }
 
 int main() {
+    int *vector = NULL;
+    createMatrix(&vector, 5, 7);
+    printMatrix(vector, 5, 7);
+    free(vector);
+    vector = NULL;
+
     return 0;
 }
+
