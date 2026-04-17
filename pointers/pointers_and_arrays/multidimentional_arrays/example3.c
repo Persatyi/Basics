@@ -10,14 +10,14 @@ void display2DArrayUnknownSize(int *arr, int rows, int cols) {
             // column. 
             // printf("%d ", *(arr + (i * cols) + j));
             // Within the function, we cannot use array subscripts as shown below:
-            // printf("%d", arr[i][j]);
+            printf("%d", arr[i][j]);
             // This is not possible because the pointer is not declared as a two-dimensional array.
 
             /*
             We can use a single subscript since it will be interpreted simply as an offset within the array, 
             whereas two subscripts cannot be used because the compiler doesn’t know the size of the dimensions:
             */
-            printf("%d ", (arr + i)[j]);
+            // printf("%d ", (arr + i)[j]);
             /*
             The first element’s address is passed using &matrix[0][0] instead of matrix. While
             using matrix will execute correctly, a warning will be generated, indicating incompatible
