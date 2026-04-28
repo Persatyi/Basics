@@ -16,3 +16,4 @@ scanf("%s", name);
 names[count] = (char *)malloc(strlen(name) + 1);
 strcpy(names[count], name);
 count++;
+
