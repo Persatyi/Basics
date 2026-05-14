@@ -13,8 +13,8 @@ examples.
 Two comparison functions will be developed. The first one compares two employees
 and returns an integer. This function is modeled after the strcmp function. A return
 value of 0 means the two employee structures are considered to be equal to each other.
-A return value of –1 means the first employee precedes the second employee alphabet‐
-ically. A return value of 1 means the first employee follows the second employee. The
+A return value of –1 means the first employee precedes the second employee alphabetically.
+ A return value of 1 means the first employee follows the second employee. The
 second function displays a single employee:
 */
 
