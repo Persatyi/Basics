@@ -1,5 +1,16 @@
 #include <stdlib.h>
 
+int compareEmployee(Employee *e1, Employee *e2) {
+    return strcmp(e1->name, e2->name);
+}
+
+void displayEmployee(Employee *employee) {
+    printf("%s\t%d\n", employee->name, employee->age);
+}
+
+typedef void (*DISPLAY)(void *);
+typedef int (*COMPARE)(void *, void *);
+
 typedef struct _employee {
     char name[32];
     unsigned char age;
@@ -76,6 +87,24 @@ initializeList(&linkedList);
  addTail(&linkedList, sally);
  addTail(&linkedList, samuel);
 */
+
+/*
+The code for the getNode function follows. The variable node initially points to the list’s
+head and traverses the list until either a match is found or the linked list’s end is en‐
+countered. The compare function is invoked to determine whether a match is found.
+When the two data items are equal, it returns a zero.
+*/
+
+Node *getNode(LinkedList *list, COMPARE compare, void *data) {
+    Node *node = list->head;
+    while(node != NULL) {
+        if(compare(node->data, data) == 0) {
+            return node;
+        }
+        node = node->next;
+    }
+    return NULL;
+}
 
 /*
 The following code sequence illustrates using the initializeList and addHead func‐
