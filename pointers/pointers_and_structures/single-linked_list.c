@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef struct _employee {
     char name[32];
@@ -71,7 +72,7 @@ void addTail(LinkedList *list, void *data) {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = data;
     node->next = NULL;
-    if(list->head = NULL) {
+    if(list->head == NULL) {
         list->head = node;
     } else {
         list->tail->next = node;
@@ -107,9 +108,45 @@ Node *getNode(LinkedList *list, COMPARE compare, void *data) {
     return NULL;
 }
 
+void delete(LinkedList *list, Node *node) {
+    if(node == list->head) {
+        if(list->head->next == NULL) {
+            list->head = list->tail = NULL;
+        } else {
+            list->head = list->head->next;
+        }
+    } else {
+        Node *tmp = list->head;
+        while(tmp != NULL && tmp->next != node) {
+            tmp = tmp->next;
+        }
+        if(tmp != NULL) {
+            tmp->next = node->next;
+        }
+    }
+    free(node->data);
+    free(node);
+}
+
 /*
-The following code sequence illustrates using the initializeList and addHead func‐
-tions. Three employees are added to the list.
+The displayLinkedList function illustrates how to traverse a linked list as shown be‐
+low. It starts at the head and displays each element using the function passed as the
+second argument. The node pointer is assigned the next field’s value and will terminate
+when the last node is displayed:
+*/
+
+void displayLinkedList(LinkedList *list, DISPLAY display) {
+    printf("\nLinked List\n");
+    Node *current = list->head;
+    while(current != NULL){
+        display(current->data);
+        current = current->next;
+    }
+}
+
+/*
+The following code sequence illustrates using the initializeList and addHead functions.
+Three employees are added to the list.
 */
 
 int main() {
@@ -124,13 +161,21 @@ int main() {
 
     Employee *susan = (Employee *)malloc(sizeof(Employee));
     strcpy(susan->name, "Susan");
-    sally->age = 45;
+    susan->age = 45;
 
-    initializeList(&LinkedList);
+    initializeList(&linkedList);
 
     addHead(&linkedList, samuel);
     addHead(&linkedList, sally);
     addHead(&linkedList, susan);
+
+    displayLinkedList(&linkedList, (DISPLAY)displayEmployee);
+    Node *node = getNode(&linkedList, (int (*)(void *, void *))compareEmployee, sally);
+    delete(&linkedList, node);
+    free(samuel);
+    samuel = NULL;
+    free(susan);
+    susan = NULL;
 
     return 0;
 }
