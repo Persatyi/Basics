@@ -1,4 +1,10 @@
 #include <stdlib.h>
+#include <stdio.h>
+
+typedef struct _employee {
+    char name[32];
+    unsigned char age;
+} Employee;
 
 int compareEmployee(Employee *e1, Employee *e2) {
     return strcmp(e1->name, e2->name);
@@ -10,11 +16,6 @@ void displayEmployee(Employee *employee) {
 
 typedef void (*DISPLAY)(void *);
 typedef int (*COMPARE)(void *, void *);
-
-typedef struct _employee {
-    char name[32];
-    unsigned char age;
-} Employee;
 
 typedef struct _node {
     void *data;
