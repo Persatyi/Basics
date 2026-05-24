@@ -21,4 +21,14 @@ void initializeList(LinkedList *list) {
 void addHead(LinkedList *list, void *data) {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = data;
+    if(list->head == NULL) {
+        list->head = node;
+        list->tail = node;
+        node->next = NULL;
+        node->prev = NULL;
+    } else {
+        node->next = list->head;
+        node->prev = list->head;
+        list->head = node;
+    }
 }
