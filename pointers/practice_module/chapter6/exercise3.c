@@ -18,17 +18,48 @@ void initializeList(LinkedList *list) {
     list->tail = NULL;
 }
 
+// void addHead(LinkedList *list, void *data) {
+//     Node *node = (Node *)malloc(sizeof(Node));
+//     node->data = data;
+//    if(list->head == NULL) {
+//        list->tail = node;
+//        node->next = NULL;
+//    } else {
+//        node->next = list->head;
+//    }
+//    list->head = node;
+// }
+
+// addHead for Double_Linked List
 void addHead(LinkedList *list, void *data) {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = data;
     if(list->head == NULL) {
-        list->head = node;
         list->tail = node;
         node->next = NULL;
         node->prev = NULL;
     } else {
         node->next = list->head;
-        node->prev = list->head;
+        node->prev = NULL;
+        list->head->prev = node;
+    }
+    list->head = node;
+}
+
+void addTail (LinkedList *list, void *data) {
+    Node *node = (Node *)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    if(list->head == NULL) {
         list->head = node;
+    } else {
+        list->tail->next = node;
+    }
+    list->tail = node;
+}
+
+void delete(LinkedList *list, Node *node){
+    if(node == list->head) {
+        
     }
 }
