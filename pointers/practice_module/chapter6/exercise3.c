@@ -58,8 +58,24 @@ void addTail (LinkedList *list, void *data) {
     list->tail = node;
 }
 
+Node *getNode(LinkedList *list, )
+
 void delete(LinkedList *list, Node *node){
     if(node == list->head) {
-        
+        if(list->head->next == NULL) {
+            list->head = list->tail = NULL;
+        } else {
+            list->head = list->head->next;
+        }
+    } else {
+        Node *tmp = list->head;
+        while (tmp != NULL && tmp->next != node) {
+            tmp = tmp->next;
+        }
+        if(tmp != NULL) {
+            tmp->next = node->next;
+        }
     }
+    free(node);
+    node = NULL;
 }
