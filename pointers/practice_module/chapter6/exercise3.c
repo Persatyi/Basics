@@ -58,7 +58,16 @@ void addTail (LinkedList *list, void *data) {
     list->tail = node;
 }
 
-Node *getNode(LinkedList *list, )
+Node *getNode(LinkedList *list, COMPARE compare, void *data) {
+    Node *node = list->head;
+    while (node != NULL) {
+        if(compare(node->data, data) == 0) {
+            return node;
+        }
+        node = node->next;
+    }
+    return NULL;
+}
 
 void delete(LinkedList *list, Node *node){
     if(node == list->head) {
