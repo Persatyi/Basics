@@ -88,3 +88,12 @@ void delete(LinkedList *list, Node *node){
     free(node);
     node = NULL;
 }
+
+void displayLinkedList(LinkedList *list, DISPLAY display) {
+    printf("\nLinked List\n");
+    Node *current = list->head;
+    while(current != NULL) {
+        display(current->data);
+        current = current->next;
+    }
+}
