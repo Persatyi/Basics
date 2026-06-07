@@ -1,4 +1,34 @@
 // Example from book for maintain stack
+#include <stdlib.h>
+
+typedef struct _node {
+    void *data;
+    struct _node *next;
+    struct _node *prev;
+} Node;
+
+typedef struct _linkedList {
+    Node *head;
+    Node *tail;
+    Node *current;
+} LinkedList;
+
+typedef LinkedList Stack;
+
+void initializeList(LinkedList *list) {
+    list->current = NULL;
+    list->head = NULL;
+    list->tail = NULL;
+}
+
+void addHead(LinkedList *list, void *data) {
+    Node *node = (Node *)malloc(sizeof(Node));
+}
+
+void initializeStack(Stack *stack) {
+    initializeList(stack);
+}
+
 
 // The push operation calls the addHead function as shown below:
 void push(Stack *stack, void* data) {
