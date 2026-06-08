@@ -1,10 +1,11 @@
 // Example from book for maintain stack
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 typedef struct _node {
     void *data;
     struct _node *next;
-    struct _node *prev;
 } Node;
 
 typedef struct _linkedList {
@@ -15,6 +16,11 @@ typedef struct _linkedList {
 
 typedef LinkedList Stack;
 
+typedef struct _employee {
+    char name[32];
+    unsigned char age;
+} Employee;
+
 void initializeList(LinkedList *list) {
     list->current = NULL;
     list->head = NULL;
@@ -23,6 +29,14 @@ void initializeList(LinkedList *list) {
 
 void addHead(LinkedList *list, void *data) {
     Node *node = (Node *)malloc(sizeof(Node));
+    node->data = data;
+    if(list->head == NULL) {
+        list->tail = node;
+        node->next = NULL;
+    } else {
+        node->next = list->head;
+    }
+    list->head = node;
 }
 
 void initializeStack(Stack *stack) {
@@ -51,4 +65,34 @@ void *pop(Stack *stack) {
  free(node);
  return data;
  }
+}
+
+int main() {
+    Stack stack;
+    initializeStack(&stack);
+
+     Employee *samuel = (Employee *)malloc(sizeof(Employee));
+    strcpy(samuel->name, "Samuel");
+    samuel->age = 28;
+
+    Employee *sally = (Employee *)malloc(sizeof(Employee));
+    strcpy(sally->name, "Sally");
+    sally->age = 28;
+
+    Employee *susan = (Employee *)malloc(sizeof(Employee));
+    strcpy(susan->name, "Susan");
+    susan->age = 45;
+
+    push(&stack, samuel);
+    push(&stack, sally);
+    push(&stack, susan);
+
+    Employee *employee;
+
+    for (int i = 0; i < 4; i++) {
+        employee = (Employee *)pop(&stack);
+        printf("Popped %s\n", employee->name);
+    }
+
+    return 0;
 }
